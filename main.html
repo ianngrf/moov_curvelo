@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moov: Modernização do ponto de Onibus: Curvelo, MG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Tech -->
+    <!-- Application Structure Plan: A single-page, vertically scrolling application with a fixed navigation header. The structure is thematic, guiding the user from a high-level concept ("Visão Geral") to specific details ("O Ponto Inteligente," "Funcionalidades Interativas," "Acessibilidade") and future potential ("Visão de Futuro"). This structure was chosen over a simple document layout to create an engaging narrative flow. The key interaction is a simulated totem interface where users can click on features to see them displayed, making the abstract proposal tangible and easier to understand. -->
+    <!-- Visualization & Content Choices: Report Info: Totem functionalities -> Goal: Demonstrate totem features interactively -> Viz/Presentation Method: A simulated totem screen (HTML/CSS) with clickable buttons -> Interaction: Clicking a button updates the screen content via JavaScript -> Justification: Transforms a static list of features into an engaging, hands-on demonstration, enhancing user understanding -> Library/Method: Vanilla JS. Report Info: Project sections (Concept, Accessibility, Future) -> Goal: Organize content logically -> Viz/Presentation Method: Thematic sections with distinct layouts (cards, columns) -> Interaction: Scroll-based navigation -> Justification: Breaks down the proposal into digestible, visually appealing segments, improving readability and user experience -> Library/Method: HTML/Tailwind. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #3D3D3D;
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #008080;
+            border-bottom-color: #008080;
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .totem-button.active {
+            background-color: #008080;
+            color: #FFFFFF;
+            transform: scale(1.05);
+        }
+        .totem-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .totem-screen-content {
+            display: none;
+        }
+        .totem-screen-content.active {
+            display: flex;
+            flex-direction: column;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">
+                <span class="text-[#008080]">Moov</span> Curvelo
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#conceito" class="nav-link font-medium text-gray-600 pb-1">O Conceito</a>
+                <a href="#ponto-inteligente" class="nav-link font-medium text-gray-600 pb-1">O Ponto</a>
+                <a href="#funcionalidades" class="nav-link font-medium text-gray-600 pb-1">Funcionalidades</a>
+                <a href="#acessibilidade" class="nav-link font-medium text-gray-600 pb-1">Acessibilidade</a>
+                <a href="#futuro" class="nav-link font-medium text-gray-600 pb-1">Oportunidades</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Moov: Modernização do ponto de Onibus: Curvelo, MG</h1>
+                <p class="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Uma iniciativa do Grupo CSC para um transporte público mais inteligente, previsível e confortável para todos os cidadãos.</p>
+            </div>
+        </section>
+
+        <section id="conceito" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">O Conceito: Autonomia e Conveniência</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">O Projeto Moov nasce da visão de que a espera pelo transporte pode ser uma experiência positiva. Em vez de incerteza, oferecemos informação. Em vez de abrigos convencionais, propomos centros de serviço e conveniência.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ponto-inteligente" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">O Ponto de Ônibus Inteligente</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Uma estrutura redesenhada para ser mais do que um simples abrigo, combinando design, conforto e tecnologia.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="card bg-gray-50 p-8 rounded-xl">
+                            <h3 class="text-2xl font-bold text-[#008080] mb-3">Design e Conforto</h3>
+                            <ul class="space-y-3 text-gray-600 list-disc list-inside">
+                                <li><span class="font-semibold">Estrutura Moderna:</span> Materiais de qualidade que modernizam o cenário urbano.</li>
+                                <li><span class="font-semibold">Ambiente Acolhedor:</span> Bancos ergonômicos e áreas verdes para uma espera mais agradável.</li>
+                                <li><span class="font-semibold">Segurança e Limpeza:</span> Espaço bem iluminado e de fácil manutenção.</li>
+                            </ul>
+                        </div>
+                        <div class="card bg-gray-50 p-8 rounded-xl">
+                            <h3 class="text-2xl font-bold text-[#008080] mb-3">O Totem Interativo</h3>
+                            <p class="text-gray-600">O coração do projeto. Um equipamento robusto e de fácil utilização que permite a qualquer cidadão, mesmo sem um smartphone, usufruir da tecnologia Moov e ter total controle sobre sua jornada.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-2xl h-full min-h-[400px] overflow-hidden shadow-inner">
+                        <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                            <source src="Video_Renderizado_Mais_Realista.mp4" type="video/mp4">
+                            O seu navegador não suporta a tag de vídeo.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="funcionalidades" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Funcionalidades na Ponta dos Dedos</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Interaja com a simulação do totem abaixo para explorar as principais funcionalidades disponíveis para o cidadão.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg max-w-5xl mx-auto">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="md:col-span-1 flex flex-col space-y-4">
+                            <button data-target="tela-horarios" class="totem-button active text-left w-full p-4 rounded-lg bg-gray-100 hover:bg-gray-200 font-semibold text-gray-700">
+                                🕒 Consulta de Linhas e Horários
+                            </button>
+                            <button data-target="tela-mapa" class="totem-button text-left w-full p-4 rounded-lg bg-gray-100 hover:bg-gray-200 font-semibold text-gray-700">
+                                🗺️ Mapa Interativo e Rotas
+                            </button>
+                            <button data-target="tela-tempo-real" class="totem-button text-left w-full p-4 rounded-lg bg-gray-100 hover:bg-gray-200 font-semibold text-gray-700">
+                                🚌 Localização em Tempo Real
+                            </button>
+                        </div>
+                        <div class="md:col-span-2 bg-gray-800 rounded-xl p-6 flex items-center justify-center min-h-[400px]">
+                            <div id="totem-screen" class="w-full h-full text-white">
+                                <div id="tela-horarios" class="totem-screen-content active">
+                                    <h4 class="text-2xl font-bold mb-4 text-teal-300">Consulta de Linhas e Horários</h4>
+                                    <p class="mb-4">Acesso instantâneo a todo o quadro de horários, eliminando a dependência de tabelas impressas e sujeitas à desatualização.</p>
+                                    <div class="bg-gray-700 p-4 rounded-lg">
+                                        <p><span class="font-bold">Linha 05 - Centro:</span> Próximo às 09:15</p>
+                                        <p><span class="font-bold">Linha 12 - Bela Vista:</span> Próximo às 09:22</p>
+                                    </div>
+                                </div>
+                                <div id="tela-mapa" class="totem-screen-content">
+                                    <h4 class="text-2xl font-bold mb-2 text-teal-300">Mapa Interativo e Rotas</h4>
+                                    <p class="mb-4 text-sm">Visualize as linhas, encontre paragens e planeie o seu trajeto de forma simples e intuitiva.</p>
+                                    <div class="flex-grow bg-gray-700 rounded-lg overflow-hidden">
+                                        <img src="mapa_curvelo.png" alt="Mapa interativo de Curvelo mostrando rotas de ônibus" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <div id="tela-tempo-real" class="totem-screen-content">
+                                    <h4 class="text-2xl font-bold mb-4 text-teal-300">Localização em Tempo Real</h4>
+                                    <p>A funcionalidade de maior impacto. Veja no mapa exatamente onde seu ônibus está, com uma estimativa precisa de chegada. Reduz a ansiedade e otimiza seu tempo.</p>
+                                     <div class="mt-4 bg-gray-700 p-4 rounded-lg">
+                                        <p>Ônibus da Linha 05 está a <span class="font-bold text-yellow-300">2 minutos</span>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="acessibilidade" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Mobilidade para Todos</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">A inovação só tem valor quando é para todos. O totem Moov foi projetado para ser inclusivo e acessível.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card bg-gray-50 p-8 rounded-xl text-center">
+                        <p class="text-4xl mb-4">♿</p>
+                        <h3 class="text-xl font-bold mb-2">Design Ergonômico</h3>
+                        <p class="text-gray-600">A altura do monitor e do teclado foi pensada para permitir o uso confortável por utilizadores de cadeira de rodas.</p>
+                    </div>
+                    <div class="card bg-gray-50 p-8 rounded-xl text-center">
+                        <p class="text-4xl mb-4">⌨️</p>
+                        <h3 class="text-xl font-bold mb-2">Navegação Física</h3>
+                        <p class="text-gray-600">A presença de um teclado físico facilita a navegação para pessoas com deficiência visual ou dificuldades motoras.</p>
+                    </div>
+                    <div class="card bg-gray-50 p-8 rounded-xl text-center">
+                        <p class="text-4xl mb-4">👁️</p>
+                        <h3 class="text-xl font-bold mb-2">Interface de Alto Contraste</h3>
+                        <p class="text-gray-600">O software pode ser configurado com cores e fontes que facilitam a leitura para pessoas com baixa visão.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="futuro" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Visão de Futuro: Um Ecossistema de Serviços</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Este é um projeto piloto com enorme potencial de expansão para consolidar Curvelo como uma cidade conectada.</p>
+                </div>
+                <div class="max-w-3xl mx-auto grid md:grid-cols-2 gap-8">
+                    <div class="card bg-white p-8 rounded-xl shadow-md text-center">
+                        <p class="text-4xl mb-4">📶</p>
+                        <h3 class="text-xl font-bold mb-2">Wi-Fi Gratuito</h3>
+                        <p class="text-gray-600">Oferecer conexão à internet na paragem de ônibus, um benefício de grande valor para a população.</p>
+                    </div>
+                    <div class="card bg-white p-8 rounded-xl shadow-md text-center">
+                        <p class="text-4xl mb-4">🔌</p>
+                        <h3 class="text-xl font-bold mb-2">Pontos de Carregamento USB</h3>
+                        <p class="text-gray-600">Instalação de tomadas USB para que os passageiros possam carregar os seus dispositivos móveis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold">Juntos, podemos transformar a mobilidade em Curvelo.</h3>
+            <p class="mt-4">O **Projeto Moov** é uma solução completa e estratégica que gera um ciclo positivo para o cidadão e para a cidade.</p>
+            <div class="mt-8 border-t border-gray-700 pt-8">
+                <p class="font-semibold">Contato:</p>
+                <p>[O seu Nome/Departamento] | [O seu Cargo]</p>
+                <p>Grupo CSC</p>
+                <p>[O seu Telefone] | [O seu E-mail]</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const totemButtons = document.querySelectorAll('.totem-button');
+            const totemScreens = document.querySelectorAll('.totem-screen-content');
+
+            totemButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+
+                    totemButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    totemScreens.forEach(screen => {
+                        if (screen.id === targetId) {
+                            screen.classList.add('active');
+                        } else {
+                            screen.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
